@@ -58,11 +58,11 @@
           <div class="agileinfo_main_grid_right_grid">
             <div id="parentHorizontalTab">
               <ul class="resp-tabs-list hor_1">
-                <li style="margin-left: 10%">Today</li>
-                <li style="margin-left: 20%">Week</li>
+                <li style="margin-left: 10%;color:#ffffff;" ref="today" @click="toggle_today">Today</li>
+                <li style="margin-left: 20%" ref="forecast" @click="toggle_forecast">Week</li>
               </ul>
               <div class="resp-tabs-container hor_1">
-                <div class="w3_agileits_tabs" v-if="false">
+                <div class="w3_agileits_tabs" v-if="today_show">
                   <div class="w3_main_grid_right_grid1">
                     <div class="w3_main_grid_right_grid1_left">
                       <p>10 AM</p>
@@ -92,15 +92,12 @@
                   </div>
                   <div class="w3_main_grid_right_grid1">
                     <div class="w3_main_grid_right_grid1_left">
-                      <p>2 PM</p>
-                    </div>
-                    <div class="w3_main_grid_right_grid1_right">
-                      <p>12<i>°c</i><span>Partly Cloudy</span></p>
+                      <p>2 PM12312312312312312</p>
                     </div>
                     <div class="clear"> </div>
                   </div>
                 </div>
-                <div class="w3_agileits_tabs" v-if="true">
+                <div class="w3_agileits_tabs" v-if="forecast_show">
                   <div class="w3_main_grid_right_grid1">
                     <div class="w3_main_grid_right_grid1_left">
                       <p>Monday</p>
@@ -140,6 +137,32 @@
                     </div>
                     <div class="clear"> </div>
                   </div>
+
+                  <div class="w3_main_grid_right_grid1">
+                    <div class="w3_main_grid_right_grid1_left">
+                      <p>Thursday</p>
+                    </div>
+                    <div class="w3_main_grid_right_grid1_right">
+                      <p>18°c<span>Sunny</span></p>
+                    </div>
+                    <div class="clear"> </div>
+                  </div><div class="w3_main_grid_right_grid1">
+                  <div class="w3_main_grid_right_grid1_left">
+                    <p>Thursday</p>
+                  </div>
+                  <div class="w3_main_grid_right_grid1_right">
+                    <p>18°c<span>Sunny</span></p>
+                  </div>
+                  <div class="clear"> </div>
+                </div><div class="w3_main_grid_right_grid1">
+                  <div class="w3_main_grid_right_grid1_left">
+                    <p>Thursday</p>
+                  </div>
+                  <div class="w3_main_grid_right_grid1_right">
+                    <p>18°c<span>Sunny</span></p>
+                  </div>
+                  <div class="clear"> </div>
+                </div>
                 </div>
               </div>
             </div>
@@ -155,13 +178,15 @@
 </template>
 
 <script>
-  // import { jQuery } from '../../assets/js/easyResponsiveTabs'
+  import NProgress from 'nprogress'
   export default {
     name: 'index',
     data(){
       return{
         url: require("../../assets/png/search.png"),
-        bodyBgImage: 'url(' + require('../../assets/jpg/2.jpg') + ')'
+        bodyBgImage: 'url(' + require('../../assets/jpg/2.jpg') + ')',
+        today_show: true,
+        forecast_show: false
       }
     },
     mounted() {
@@ -172,6 +197,26 @@
       this.clearBodyBackGround()
     },
     methods:{
+      toggle_today(){
+          if (this.today_show){
+              return;
+          } else {
+            this.today_show = !this.today_show
+            this.forecast_show = !this.forecast_show
+            this.$refs.today.style.color = '#ffffff';
+            this.$refs.forecast.style.color = '#000000';
+          }
+      },
+      toggle_forecast(){
+        if (this.forecast_show){
+          return;
+        } else {
+          this.today_show = !this.today_show
+          this.forecast_show = !this.forecast_show
+          this.$refs.forecast.style.color = '#ffffff';
+          this.$refs.today.style.color = '#000000';
+        }
+      },
       startTime(){
         let today = new Date()
         let h = today.getHours();
@@ -189,12 +234,17 @@
       },
       // 添加body图片
       setBodyBackGround () {
-        document.body.style.backgroundSize = '100%'
+        document.body.style.backgroundSize = '140%'
+        document.body.style.backgroundRepeat = 'no-repeat'
+        document.body.style.backgroundPosition = '0px 0px'
         document.body.style.backgroundImage = this.bodyBgImage
       },
       // 清除背景图
       clearBodyBackGround () {
         document.body.style.backgroundImage = ''
+        document.body.style.backgroundSize = ''
+        document.body.style.backgroundRepeat = ''
+        document.body.style.backgroundPosition = ''
       }
     }
   }
@@ -210,5 +260,8 @@
 }
 .bg{
   background: url(../../assets/jpg/2.jpg) no-repeat 0px 0px;
+}
+.active{
+  color: #ffffff;
 }
 </style>
