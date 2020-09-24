@@ -34,15 +34,13 @@
         } else {
            // getCurrentWeather(false,keyword).then((response) => {
            // this.$router.push({path:'/weather/current-forecast/info'})
+
          // })
-          this.$router.push({path:'/weather/current-forecast/info'})
+          this.$router.push({path:'/weather/current-forecast/info',query:{keyword:keyword}})
         }
       },
       searchWeatherByIp(){
-        const useIp = true
-        getCurrentWeather(useIp).then(function(response) {
-          window.console.log(response)
-        })
+        this.$router.push({path:'/weather/current-forecast/info'})
       }
     }
   }
