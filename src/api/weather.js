@@ -1,8 +1,10 @@
 import request from '@/utils/request'
 
+export const baseUrl = 'http://localhost:8181'
+
 export function getPrecipitationForecast() {
   return request({
-    baseURL: 'http://localhost:8181',
+    baseURL: baseUrl,
     url: 'forecast/precipitation',
     method: 'get'
   })
@@ -11,8 +13,17 @@ export function getPrecipitationForecast() {
 
 export function getCurrentWeather(useIp,keyword) {
   return request({
-    baseURL: 'http://localhost:8181',
+    baseURL: baseUrl,
     url: 'current/weather',
+    method: 'get',
+    params:{useIp,keyword}
+  })
+}
+
+export function getForecastWeather(useIp,keyword) {
+  return request({
+    baseURL: baseUrl,
+    url: 'forecast/weather',
     method: 'get',
     params:{useIp,keyword}
   })

@@ -35,7 +35,7 @@
             <div class="w3ls_main_grid_left_grid1">
               <div class="w3l_main_grid_left_grid1_left">
                 <h3>风速风向</h3>
-                <p>{{win}}<span>{{win_meter}}</span></p>
+                <p><span>{{win}}</span><span>{{win_meter}}</span></p>
               </div>
               <div class="w3l_main_grid_left_grid1_right">
                 <p id="cloudy" width="45" height="45"><img :src="win_meter_url"></p>
@@ -58,111 +58,71 @@
           <div class="agileinfo_main_grid_right_grid">
             <div id="parentHorizontalTab">
               <ul class="resp-tabs-list hor_1">
-                <li style="margin-left: 10%;color:#ffffff;" ref="today" @click="toggle_today">Today</li>
-                <li style="margin-left: 20%" ref="forecast" @click="toggle_forecast">Week</li>
+                <li style="margin-left: 10%;color:#ffffff;" ref="today" @click="toggle_today">今天</li>
+                <li style="margin-left: 20%" ref="forecast" @click="toggle_forecast">一周</li>
               </ul>
               <div class="resp-tabs-container hor_1">
                 <div class="w3_agileits_tabs" v-if="today_show">
                   <div class="w3_main_grid_right_grid1">
                     <div class="w3_main_grid_right_grid1_left">
-                      <p>10 AM</p>
+                      <p>最低气温</p>
                     </div>
                     <div class="w3_main_grid_right_grid1_right">
-                      <p>15°c<span>Cloudy</span></p>
+                      <p>{{tem1}}<i>°c</i></p>
                     </div>
                     <div class="clear"> </div>
                   </div>
                   <div class="w3_main_grid_right_grid1">
                     <div class="w3_main_grid_right_grid1_left">
-                      <p>11 AM</p>
+                      <p>最高气温</p>
                     </div>
                     <div class="w3_main_grid_right_grid1_right">
-                      <p>16<i>°c</i><span>Clear</span></p>
+                      <p>{{tem2}}<i>°c</i></p>
                     </div>
                     <div class="clear"> </div>
                   </div>
                   <div class="w3_main_grid_right_grid1">
                     <div class="w3_main_grid_right_grid1_left">
-                      <p>12 PM</p>
+                      <p>空气湿度</p>
                     </div>
                     <div class="w3_main_grid_right_grid1_right">
-                      <p>18<i>°c</i><span>Cear</span></p>
+                      <p>{{humidity}}</p>
                     </div>
                     <div class="clear"> </div>
                   </div>
                   <div class="w3_main_grid_right_grid1">
                     <div class="w3_main_grid_right_grid1_left">
-                      <p>2 PM12312312312312312</p>
+                      <p>PM2.5</p>
+                    </div>
+                    <div class="w3_main_grid_right_grid1_right">
+                      <p>{{air_pm25}}</p>
+                    </div>
+                    <div class="clear"> </div>
+                  </div>
+                  <div class="w3_main_grid_right_grid1">
+                    <div class="w3_main_grid_right_grid1_left">
+                      <p>能见度</p>
+                    </div>
+                    <div class="w3_main_grid_right_grid1_right">
+                      <p>{{visibility}}</p>
                     </div>
                     <div class="clear"> </div>
                   </div>
                 </div>
                 <div class="w3_agileits_tabs" v-if="forecast_show">
-                  <div class="w3_main_grid_right_grid1">
+                  <div v-for="(item,index) in forecast_data" :key="item.date" class="w3_main_grid_right_grid1">
                     <div class="w3_main_grid_right_grid1_left">
-                      <p>Monday</p>
+                      <p>{{item.day}}</p>
                     </div>
                     <div class="w3_main_grid_right_grid1_middle">
-                      <img :src="url" class="weather-img">
+                      <img :src="baseUrl+'/'+item.wea_img" class="weather-img">
+                      <span>{{item.wea}}</span>
                     </div>
                     <div class="w3_main_grid_right_grid1_right" style="text-align: center">
-                      <p>14°c~16°c<span>Clear</span></p>
+                      <p>{{item.tem2}}~{{item.tem1}}<span>{{item.win[0]}}{{item.win_speed}}</span></p>
                     </div>
                     <div class="clear"> </div>
                   </div>
-                  <div class="w3_main_grid_right_grid1">
-                    <div class="w3_main_grid_right_grid1_left">
-                      <p>Tuesday</p>
-                    </div>
-                    <div class="w3_main_grid_right_grid1_right">
-                      <p>16°c<span>Cloudy</span></p>
-                    </div>
-                    <div class="clear"> </div>
-                  </div>
-                  <div class="w3_main_grid_right_grid1">
-                    <div class="w3_main_grid_right_grid1_left">
-                      <p>Wednesday</p>
-                    </div>
-                    <div class="w3_main_grid_right_grid1_right">
-                      <p>11°c<span>Rainy</span></p>
-                    </div>
-                    <div class="clear"> </div>
-                  </div>
-                  <div class="w3_main_grid_right_grid1">
-                    <div class="w3_main_grid_right_grid1_left">
-                      <p>Thursday</p>
-                    </div>
-                    <div class="w3_main_grid_right_grid1_right">
-                      <p>18°c<span>Sunny</span></p>
-                    </div>
-                    <div class="clear"> </div>
-                  </div>
-
-                  <div class="w3_main_grid_right_grid1">
-                    <div class="w3_main_grid_right_grid1_left">
-                      <p>Thursday</p>
-                    </div>
-                    <div class="w3_main_grid_right_grid1_right">
-                      <p>18°c<span>Sunny</span></p>
-                    </div>
-                    <div class="clear"> </div>
-                  </div><div class="w3_main_grid_right_grid1">
-                  <div class="w3_main_grid_right_grid1_left">
-                    <p>Thursday</p>
-                  </div>
-                  <div class="w3_main_grid_right_grid1_right">
-                    <p>18°c<span>Sunny</span></p>
-                  </div>
-                  <div class="clear"> </div>
-                </div><div class="w3_main_grid_right_grid1">
-                  <div class="w3_main_grid_right_grid1_left">
-                    <p>Thursday</p>
-                  </div>
-                  <div class="w3_main_grid_right_grid1_right">
-                    <p>18°c<span>Sunny</span></p>
-                  </div>
-                  <div class="clear"> </div>
-                </div>
                 </div>
               </div>
             </div>
@@ -180,10 +140,13 @@
 <script>
   import NProgress from 'nprogress'
   import { getCurrentWeather } from '@/api/weather'
+  import { getForecastWeather } from '@/api/weather'
+  import { baseUrl } from '@/api/weather'
   export default {
     name: 'index',
     data(){
       return{
+        baseUrl: baseUrl+'/weather_img',
         url: require('../../assets/png/search.png'),
         bodyBgImage: 'url(' + require('../../assets/jpg/2.jpg') + ')',
         pressure_url: require('../../assets/png/pressure.png'),
@@ -202,7 +165,13 @@
         pressure: '',
         win: '',
         win_meter: '',
-        win_speed: ''
+        win_speed: '',
+        tem1: '',
+        tem2: '',
+        humidity: '',
+        air_pm25: '',
+        visibility: '',
+        forecast_data: []
       }
     },
     mounted() {
@@ -216,33 +185,43 @@
         NProgress.start()
         const keyword = this.$route.query.keyword
         if (keyword != undefined){
-          getCurrentWeather(false,keyword).then((response) =>{
-              NProgress.done()
-              this.post_processor(response.data)
+          getCurrentWeather(false,keyword).then((current_response) =>{
+              getForecastWeather(false,keyword).then((forecast_response) =>{
+                  NProgress.done()
+                  this.post_processor(current_response.data,forecast_response.data)
+              })
           })
         } else {
-          getCurrentWeather(true).then((response) =>{
-              NProgress.done()
-              this.post_processor(response.data)
+          getCurrentWeather(true).then((current_response) =>{
+            getForecastWeather(true).then((forecast_response) =>{
+                 NProgress.done()
+                 this.post_processor(current_response.data,forecast_response.data)
+            })
           })
         }
 
       },
-      post_processor(data){           // 请求结果返回后的处理函数
-        this.city_name = data.city
-        this.current_temp = data.tem
-        this.country = data.country
-        this.weather = data.wea
-        this.air_tips = data.air_tips
-        this.date = data.date
-        this.win = data.win
-        this.win_meter = data.win_meter
-        this.win_speed = data.win_speed
-        this.pressure = data.pressure
+      post_processor(current_data,forecast_data){           // 请求结果返回后的处理函数
+        this.air_pm25 = current_data.air_pm25
+        this.visibility = current_data.visibility
+        this.tem1 = current_data.tem1
+        this.tem2 = current_data.tem2
+        this.humidity = current_data.humidity
+        this.city_name = current_data.city
+        this.current_temp = current_data.tem
+        this.country = current_data.country
+        this.weather = current_data.wea
+        this.air_tips = current_data.air_tips
+        this.date = current_data.date
+        this.win = current_data.win
+        this.win_meter = current_data.win_meter
+        this.win_speed = current_data.win_speed
+        this.pressure = current_data.pressure
+        this.forecast_data = forecast_data.data
+        window.console.log(forecast_data.data)
         this.load_completed = true
         this.startTime();
         this.setBodyBackGround();
-        window.console.log(data)
       },
       toggle_today(){
           if (this.today_show){
@@ -283,7 +262,7 @@
       },
       // 添加body图片
       setBodyBackGround () {
-        document.body.style.backgroundSize = '140%'
+        document.body.style.backgroundSize = '160%'
         document.body.style.backgroundRepeat = 'no-repeat'
         document.body.style.backgroundPosition = '0px 0px'
         document.body.style.backgroundImage = this.bodyBgImage
@@ -304,7 +283,7 @@
 <style scoped src="../../styles/style.css"></style>
 <style scoped>
 .weather-img{
-  width: 40%;
+  width: 30%;
   margin-top: 1%
 }
 .bg{
