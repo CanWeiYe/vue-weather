@@ -115,7 +115,7 @@
                       <p>{{item.day}}</p>
                     </div>
                     <div class="w3_main_grid_right_grid1_middle">
-                      <img :src="baseUrl+'/'+item.wea_img" class="weather-img">
+                      <img :src="baseUrl+'/'+item.wea_img+'.png'" class="weather-img">
                       <span>{{item.wea}}</span>
                     </div>
                     <div class="w3_main_grid_right_grid1_right" style="text-align: center">
@@ -283,8 +283,8 @@
 <style scoped src="../../styles/style.css"></style>
 <style scoped>
 .weather-img{
-  width: 30%;
-  margin-top: 1%
+  width: 100%;
+  margin-top: -5%
 }
 .bg{
   background: url(../../assets/jpg/2.jpg) no-repeat 0px 0px;

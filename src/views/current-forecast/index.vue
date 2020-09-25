@@ -21,8 +21,6 @@
 
 <script>
 
-  import { getCurrentWeather } from '@/api/weather'
-
   export default {
     name: 'index',
     methods:{
@@ -32,10 +30,6 @@
           alert("输入长度应在2-6之间");
           return;
         } else {
-           // getCurrentWeather(false,keyword).then((response) => {
-           // this.$router.push({path:'/weather/current-forecast/info'})
-
-         // })
           this.$router.push({path:'/weather/current-forecast/info',query:{keyword:keyword}})
         }
       },
