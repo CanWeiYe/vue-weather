@@ -28,3 +28,11 @@ export function getForecastWeather(useIp,keyword) {
     params:{useIp,keyword}
   })
 }
+
+export function getAlarmData() {
+  return request({
+    baseURL: baseUrl,
+    url: 'alarms',
+    method: 'get'
+  })
+}

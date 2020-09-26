@@ -12,5 +12,9 @@ module.exports = {
    * @type {boolean} true | false
    * @description Whether show the logo in sidebar
    */
-  sidebarLogo: false
+  sidebarLogo: false,
+  /**
+   * 是否启用天气预警
+   */
+  enableAlarm: true
 }

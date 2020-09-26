@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-
+import { enableAlarm } from '@/settings'
 
 Vue.use(Router)
 
@@ -65,15 +65,6 @@ export const constantRoutes = [
         name: 'current-forecast',
         component: () => import('@/views/current-forecast/index'),
         meta: { title: '天气实况及预报', icon: 'current' },
-        // children: [
-        //   {
-        //     path: 'info',
-        //     name: 'info',
-        //     hidden: true,
-        //     component: () => import('@/views/weather-info/index'),
-        //     meta: {title: '城市天气'}
-        //   }
-        // ]
       },
       {
         path: 'current-forecast/info',
@@ -92,6 +83,7 @@ export const constantRoutes = [
       {
         path: 'weather-warning',
         name: 'weather-warning',
+        hidden: !enableAlarm,
         component: () => import('@/views/warning/index'),
         meta: { title: '天气预警', icon: 'warning' }
       }

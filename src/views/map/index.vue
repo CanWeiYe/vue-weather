@@ -33,7 +33,6 @@
 
 <script>
 
-  import { mapGetters } from 'vuex'
   import baiduMap from 'vue-baidu-map/components/map/Map.vue'
   import bmLocalSearch from 'vue-baidu-map/components/search/LocalSearch'
   import bmNavigation from 'vue-baidu-map/components/controls/Navigation'
@@ -54,11 +53,6 @@
         keyword: undefined,
         location: undefined
       }
-    },
-    computed: {
-      ...mapGetters([
-
-      ])
     },
     methods: {
       handler({ BaiduMap, map }) {
